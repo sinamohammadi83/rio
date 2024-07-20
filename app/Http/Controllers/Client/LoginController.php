@@ -26,13 +26,13 @@ class LoginController extends Controller
             $token = $user->createToken('user')->plainTextToken;
 
             return response()->json([
-                'message' => 'login successfull!',
+                'code' => 0,
                 'token' => $token
             ])->setStatusCode(200);
         }else{
 
             return response()->json([
-                'message' => 'user not found',
+                'code' => 1,
             ])->setStatusCode(404);
         }
     }

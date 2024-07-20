@@ -25,11 +25,19 @@ class RegisterController extends Controller
             'avatar' => $avatar,
         ]);
 
-        $token = $user->createToken('user')->plainTextToken;
+        if ($user)
+        {
+            $token = $user->createToken('user')->plainTextToken;
 
-        return response()->json([
-            'message' => 'register successfull!',
-            'token' => $token
-        ])->setStatusCode(200);
+            return response()->json([
+                'code' => 0,
+                'token' => $token
+            ])->setStatusCode(200);
+        }else{
+            return response()->json([
+                'code' => 1,
+                'message' => 'create user with error!'
+            ])->setStatusCode(200);
+        }
     }
 }
