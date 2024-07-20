@@ -32,7 +32,7 @@ class LoginController extends Controller
         }else{
 
             return response()->json([
-                'code' => 1,
+                'code' => 1
             ])->setStatusCode(404);
         }
     }

@@ -12,13 +12,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $categories = ProductCategory::all();
 
-        $newestProducts = Product::query()->limit(4)->get();
+    }
 
+    public function user()
+    {
         return response()->json([
-            'categories' => CategoryResource::collection($categories),
-            'newestProducts' => $newestProducts
+            'user' => auth()->user()
         ])->setStatusCode(200);
     }
 }

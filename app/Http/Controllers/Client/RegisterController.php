@@ -14,6 +14,15 @@ class RegisterController extends Controller
     public function store(RegisterRequest $request)
     {
 
+        $checkUserExists = User::query()->where('username',$request->get('username'))->exists();
+
+        if ($checkUserExists)
+        {
+            return response()->json([
+                'code' => 2
+            ])->setStatusCode(400);
+        }
+
         $avatar = $this->upload($request,'avatars','avatar');
 
         $user = User::query()->create([
@@ -36,7 +45,6 @@ class RegisterController extends Controller
         }else{
             return response()->json([
                 'code' => 1,
-                'message' => 'create user with error!'
             ])->setStatusCode(200);
         }
     }
