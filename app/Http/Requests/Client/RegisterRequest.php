@@ -26,7 +26,7 @@ class RegisterRequest extends FormRequest
             'password' => ['required','min:8','max:20'],
             'firstname' => ['required','min:3','max:20'],
             'lastname' => ['required','min:3','max:20'],
-            'avatar' => ['required','mimes:jpg,jpeg','max:1024']
+            'avatar' => ['nullable','mimes:jpg,jpeg','max:1024']
         ];
     }
 }

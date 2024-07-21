@@ -7,6 +7,7 @@ use App\Http\Helpers\Uploader;
 use App\Http\Requests\Client\RegisterRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 
 class RegisterController extends Controller
@@ -23,8 +24,10 @@ class RegisterController extends Controller
             ])->setStatusCode(400);
         }
 
-        $avatar = $this->upload($request,'avatars','avatar');
-
+        if($request->hasFile('avatar'))
+            $avatar = $this->upload($request,'avatars','avatar');
+        else
+            $avatar = URL::to('/').'/'.'public/avatar.png';
         $user = User::query()->create([
             'username' => $request->get('username'),
             'password' => hash('sha256',$request->get('password')),
