@@ -33,7 +33,7 @@ class RegisterController extends Controller
             'password' => hash('sha256',$request->get('password')),
             'firstname' => $request->get('firstname'),
             'lastname' => $request->get('lastname'),
-            'role' => 'customer',
+            'role' => '1',
             'avatar' => $avatar,
         ]);
 
